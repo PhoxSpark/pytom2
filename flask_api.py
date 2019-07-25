@@ -23,6 +23,8 @@ class Pytom(Resource):
         """
         Get method.
         """
+        parser = API.parser()
+        parser.add_argument('user', location='args', help='Queried user')
         return ORGANISMS
 
     @API.expect(MODEL_ORGANISM)
@@ -40,8 +42,8 @@ class Pytom(Resource):
         #ORGANISMS[0]["SHEET"] = {}
         #ORGANISMS[0]["SSBOND"] = {}
 
-        PDBObject = PDB(new_organism["organism"])
-        ORGANISMS[new_organism["organism"]] = PDBObject.pdb_dictionary
+        pdb_object = PDB(new_organism["organism"])
+        ORGANISMS[new_organism["organism"]] = pdb_object.pdb_dictionary
 
         return {"result" : "organism added"}, 201
 

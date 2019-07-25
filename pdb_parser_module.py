@@ -1,8 +1,9 @@
 """
+Module with object PDB containing all the information.
 """
 import os
 import urllib
-from Bio.PDB import PDBParser, PDBList
+from Bio.PDB import PDBParser
 
 class PDB():
     """
@@ -17,16 +18,19 @@ class PDB():
     failed_count = 0
 
     def __init__(self, arg_organism, arg_url="https://files.rcsb.org/download/", \
-    arg_save_location="tmp/"):
+    arg_save_location="tmp/", arg_file_name="."):
         """
+        Initialization of PDB Object.
         """
+        if arg_file_name == ".":
+            arg_file_name = arg_organism
         self.save_location = arg_save_location
         self.organism = arg_organism
-        self.file_name = arg_organism + "_pdb.pdb"
+        self.file_name = arg_file_name + ".pdb"
         self.make_url(arg_url)
         self.download_url()
         if not self.failed:
-            self.Parse_PDB()
+            self.parse_pdb()
 
     def make_url(self, arg_url):
         """
@@ -70,21 +74,22 @@ class PDB():
                     self.failed = False
                     self.failed_count = 0
 
-    def Parse_PDB(self):
+    def parse_pdb(self):
         """
+        Takes all the atom information from the PDB.
         """
         parser = PDBParser()
         structure = parser.get_structure(self.organism, self.save_location + self.file_name)
         for atom in structure.get_atoms():
             self.pdb_dictionary["ATOM"][atom.get_serial_number()] = {\
-            "serial_number" : atom.get_serial_number(), \
-            "name" : atom.get_name(), \
-            "id" : atom.get_id(), \
-            "x" : float(atom.get_coord()[0]), \
-            "y" : float(atom.get_coord()[1]), \
-            "z" : float(atom.get_coord()[2]), \
-            "bfactor" : atom.get_bfactor(), \
-            "occupancy" : atom.get_occupancy(), \
-            "fullname" : atom.get_fullname(), \
-            "altloc" : atom.get_altloc(), \
+            "serial_number" : atom.get_serial_number(),\
+            "name" : atom.get_name(),\
+            "id" : atom.get_id(),\
+            "x" : float(atom.get_coord()[0]),\
+            "y" : float(atom.get_coord()[1]),\
+            "z" : float(atom.get_coord()[2]),\
+            "bfactor" : atom.get_bfactor(),\
+            "occupancy" : atom.get_occupancy(),\
+            "fullname" : atom.get_fullname(),\
+            "altloc" : atom.get_altloc(),\
             "level" : atom.get_level()}
