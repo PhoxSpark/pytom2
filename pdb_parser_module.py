@@ -76,7 +76,7 @@ class PDB():
 
     def parse_pdb(self):
         """
-        Takes all the atom information from the PDB.
+        Takes all the atom information from the PDB and adds it in to a dictionary.
         """
         parser = PDBParser()
         structure = parser.get_structure(self.organism, self.save_location + self.file_name)
