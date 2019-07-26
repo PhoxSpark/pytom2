@@ -3,7 +3,7 @@ Flask API main module.
 """
 from flask import Flask
 from flask_restplus import Api, Resource, fields
-from pdb_parser_module import PDB
+from pytom2.source.pdb_parser_module import PDB
 
 APP = Flask(__name__)
 API = Api(APP)
@@ -46,6 +46,12 @@ class Pytom(Resource):
         ORGANISMS[new_organism["organism"]] = pdb_object.pdb_dictionary
 
         return {"result" : "organism added"}, 201
+
+def start_api():
+    """
+    Initialize flask framework.
+    """
+    APP.run(debug=True)
 
 if __name__ == "__main__":
     APP.run(debug=True)
