@@ -1,75 +1,16 @@
-# Python + Atom
-Project for collect atom data from PDB database for the Barcelona Supercomputing Center.
+# Pytom2
+Pytom + Atom = Pytom.
+Pytom was a BSC project to make an API with the pourpose of getting easily PDB data in to JSON format. Of course, this was only a learning project for students of Python. Despite that, we are more than excited to work here and make this project.
+Also, as yo can see, this is Pytom2, actually you can take a look to Pytom-Project repository (wich is the Pytom1) on mi GitHub page. That project was intended to be an API and at some point it was! You can actually take a look to all the commits and see that on the early days, the full pourpose of this API was satisfied. The problem was that I am not an experienced programmer so after achiving my goals and having like two weeks to still doing thinks I said to myself: ___"Well, may now can improve my project and add some features".___ Yes, I improved the functionality a lot, even the code organisation and standarization, but I was converting an API in to another thing just because I didn't know exactly how an API works.
+Worry not, my program (Pytom-Project) works correctly and do a lot of things! But I surely want to make a working API so knowing what I've learned doing Pytom-Project I decided to start from zero and make Pytom2 just with learning pourposes.
 
-## Objectives:
-This project has the objective of turn in to an API to download a PDB as a JSON file, applying filters to it and selecting the data that interest the user. The main idea was to select and filter atoms, but in the future this can filter more data inside a PDB.
+## Rest API with Flask
+With Pytom-Project I meet Flask and I felt in love. Sure, it's not as advanced like Django but I often struggles trying to use the advanced functions of Flask so at this moment it's more than enugh. With flask I can make an API, a WebApp or even a fully functional WebPage, so for this project and my future me, Flask it's a bless.
 
-## Actual features:
-This is the updated list of features of this program:
+## Main pourpose
+Pytom-Project it's at version 0.4.0 (+0.1 for every major change or branch merge and +0.0.1 for every commit) or so and it's not going to go more high. Luckly, Pytom2 uses some functions of Pytom-Project so I decided to keep the same version on Pytom2 and go from that point. I don't know if I'm going to make throught the full project because honestly, this is only a "time waster until holydays", but I want to learn in this little time. Another problem is that I probably can't continue with this after holydays because BSC is going to assing me to a real project.
 
-### Download PDB and insert it on a Database
-For offline and fast use, Pytom download the PDB of the file one time and inserts it in to a database SQL implemented with Flask. It can handle every PDB on PDB databases (despites the fact that it's only looking for atoms at this moment).
+Despite of that, the main pourpose of the project will be to get data mainly, but also, apply philters to that data. I have a lot of possibilities to make this and the Biopython libraries (not used in Python-Project) are in some way complete (but a bit confusing).
 
-### Manipulate many times the JSON dictionary
-You can manipulate many times the same dictionary to apply different filters a lot of times.
-
-### Convert the database in to a JSON
-Pytom transforms the created database in to a dictionary, this dictionary is easly manipulated and can be converted as a JSON file. Thats the main objective of the API.
-
-### Select statement
-At the moment, Pytom has this statement that allows to select a camp or a list of camps and a value, a non-accurate value (ignoring decimals) or a range of values. Also, allows to apply this select filter to more than one PDB at the same time.
-
-### Nice UI app web
-It's under development but the app web explains the main pourpose and origin of the program. The main objective of this app web is to allow more user friendly interactions with Pytom but this can be ignored completly and only use the API part of Pytom.
-
-## API Commands and URL's
-Pytom can handle some arguments to edit your JSON output. Those arguments are used in the URL bar.
-
-### Main function, organism
-The main function of the Pytom is the look for organism function. This is the syntax:
-
-***localhost:5000/pytom?organism=2ki5***
-
-This will return the JSON file of the PDB 2KI5. Pretty simple to use, every program that handle URL downloads can use it as an API.
-
-***NOTE: The first argument starts with ?, every next argument has to start with &.***
-
-### Species
-A working on function, actually you can add the specie of the organism that you are requesting. In the future this is intended to get all the organisms of the specified specimen.
-
-### New
-If you want to clear your database or the working dictionary, you can do it with the New statement. It's simple, if you write ***?newdb=y***, the whole database will be droped. If you write ***?newdict=y*** the whole working dictionary will be deleted.
-This don't limits the program usage, if you delete any of this data, Pytom will create it all the next time you make a query.
-
-### Save
-Even if you don't use it, it's allways in use because the default output of this statement is "y", in other words, every time you make a query, a ***&save=y*** is "added" to your consult. If you ***don't want to modify the working dictionary*** you can add &save=n to your query. With that done, you can observe the changes that will apply to the dictionary without modifying it.
-
-### Select
-The select statement allows the user to apply filters. It's used on a concrete way but it's relatively simple and flexible. Here is the syntax:
-
-***localhost:5000/pytom?organism=2ki5&select=CA;name;accurate***
-
-or:
-
-***localhost:5000/pytom?organism=2ki5&select=mode:range;camp:x;value:1,5***
-
-the next is ***not allowed***, if you specify the type you can't use non specified values:
-
-***localhost:5000/pytom?organism=2ki5&select=value:CA;name;accurate***
-
-The select statement has 3 modes: Normal (it will ignore decimals), Accurate (it looks for exact value) and range (it takes two values and select everything between). Normally, you can add more than one values on a camp and even more than one organism, but at this moment it only accepts one camp at the same time.
-
-### Rollback
-This statement allows the user to go back on his changes. It's very useful in case the user query don't show any results and want to go to before results.
-
-## To-do list
-Pytom can do some things, still is a bit empty. There are some to do things that I wan't to implement (the list can be expanded):
-
-  1. Species classification
-  2. All organism of a specie download
-  3. Multi camp filter
-  4. Read the docs documentation
-  5. Forms on Pytom URL for easy query
-  6. Read more data from the PDB
-  7. Specify a different PDB URL download
-  8. A lot of optimization and organization
+## End
+Sayd that, thanks for take a look and excuse every ortographic mistake I maded here (probably not little ones or low quantity of them), but I like to express myself without use any translator (but an ortographic corrector would be perfect).
