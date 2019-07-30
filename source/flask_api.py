@@ -1,6 +1,7 @@
 """
 Flask API main module.
 """
+from __future__ import absolute_import
 from flask import Flask
 from flask_restplus import Api, Resource, fields
 from pytom2.source.pdb_parser_module import PDB

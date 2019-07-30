@@ -1,6 +1,7 @@
 """
 Python setup
 """
+from __future__ import absolute_import
 import setuptools
 
 with open("README.md", "r") as fh:

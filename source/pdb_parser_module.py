@@ -1,6 +1,7 @@
 """
 Module with object PDB containing all the information.
 """
+from __future__ import absolute_import
 import os
 import urllib
 from Bio.PDB import PDBParser

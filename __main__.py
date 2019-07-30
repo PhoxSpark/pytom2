@@ -1,5 +1,6 @@
 """
 Main function for execution of the full package.
 """
-import pytom2.source.flask_api as flask_api
-flask_api.start_api()
+from __future__ import absolute_import
+from pytom2.source.flask_api import start_api
+start_api()
